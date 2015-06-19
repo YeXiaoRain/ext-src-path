@@ -15,7 +15,7 @@ Allows to copy to the clipboard the extension path
 
 ---
 
-In my system, the extension is installed in `~/.config/chromium/Default/Extensions/` . So I modified the js file in line 36.(** I use the absolute path because the `~` sometimes doesh't work.**)
+In my system, the extension is installed in `~/.config/chromium/Default/Extensions/` . So I modified the js file in line 36.(**I use the absolute path because the `~` sometimes doesh't work.**)
 
 At first , I want it can open the folder manager with clicking the extension name, but I haven't got any way to achieve it.
 
