@@ -33,7 +33,7 @@ function getChromeExtPath(username) {
 		//not supported yet
 		break;
 	case "Linux":
-		path = "~/.config/google-chrome/Default/Extensions/";
+		path = "/home/cro-marmot/.config/chromium/Default/Extensions/";//path = "~/.config/google-chrome/Default/Extensions/";
 		break;
 	case "Windows":
 	default: //fallthrough from windows
@@ -53,6 +53,7 @@ var getAllExtFunc = function (listOfExt) {
 	for(var i=0; i< len; i++)
 	{
 		//console.log('<p>' + listOfExt[i].name + '</p>');
+		var a_id='';
 		if (listOfExt[i].installType === "development")
 		{
 			fullPath="#";
@@ -62,6 +63,7 @@ var getAllExtFunc = function (listOfExt) {
 		else
 		{
 			fullPath = path + listOfExt[i].id + "/";
+			a_id = listOfExt[i].id;
 			if ('icons' in listOfExt[i] && listOfExt[i].icons.length > 0)
 			{
 				img = "<img src='" + listOfExt[i].icons[0].url + "' width='16px' height='16px'/>";
@@ -72,8 +74,19 @@ var getAllExtFunc = function (listOfExt) {
 			}
 			var clipboard = '<button class="copyUrl" data-href="' + fullPath +'">Copy to clipboard</button>';
 		}
-		var html = "<tr><td>" + img + "</td><td>" + '<a href="' + '">' + listOfExt[i].name + '</a>' + "</td><td>" + clipboard + '<br/>' + "</td>";
+		var a_link;
+		if(fullPath!="#")
+			a_link='<a href="#" id="'+ a_id +'">';
+		else
+			a_link='<a href="#">';
+		var html = "<tr><td>" + img + "</td><td>" + a_link + listOfExt[i].name + '</a>' + "</td><td>" + clipboard + '<br/>' + "</td>";
 		$(".chrome-ext-list").append(html);
+		if(fullPath!="#"){
+			$('#'+a_id).click(function(){
+				chrome.tabs.update({url:"file://"+path+this.id+ "/"});
+				return false;
+			});
+		}
 	}
 	$(".chrome-ext-list").append("</tbody></table>");
 };
