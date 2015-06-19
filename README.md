@@ -22,3 +22,5 @@ At first , I want it can open the folder manager with clicking the extension nam
 Then I want it can open the folder in the tab, and I tried to modify `href` of `a` but chromium-browser said **Not allowed to load local resource:**.
 
 At last I add each `a` an `id` and use jQuery to append `click()` response. As the change you can see in the code.
+
+Modified css on June 20th,2015.
